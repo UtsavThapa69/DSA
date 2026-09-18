@@ -124,7 +124,19 @@ class LinkedList:
             print(temp.value)
             temp=temp.next
 
-a=LinkedList(2)
-a.append(3)
-a.prepend(1)
-a.print_list()
+    def reverse(self):
+        if self.head is None:
+            return None
+
+        temp=self.head
+        self.head=self.tail
+        self.tail=temp
+        before=None
+        
+#while temp is not None is more reliable though
+        for _ in range(self.length):
+            after=temp.next
+            temp.next=before
+            before=temp
+            temp=after
+        return True
