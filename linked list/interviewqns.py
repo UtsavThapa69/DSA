@@ -92,5 +92,61 @@ def partition_value(self,x):
     prev1.next=d2.next
     self.head=d1.next
     return True
-        
+
+# for reversing just a few nodes inside the link list
+def reverse_between(self,i1,i2):
+    if self.head is None:
+        return None
     
+    current=self.head
+    d=Node(0)
+    d.next=current
+    prev=d
+
+    for _ in range(i1):
+        current=current.next
+        prev=prev.next
+
+    to_move=current.next
+
+
+    for _ in range(i2 - i1):
+        current.next=to_move.next
+        to_move.next=prev.next
+        prev.next=to_move
+        to_move=current.next
+
+    self.head=d.next
+    d.next=None
+
+    return True
+
+#there are better ways but this is what i thought of 
+#there could be better ways and this is not one of the best
+#its just the logic i used
+def swap_pairs(self):
+    if self.head is None:
+        return False
+    d=Node(0)
+    first=self.head
+    second=self.head.next
+    d.next=self.head
+    prev=d
+        
+    while second is not None:
+        first.next=second.next
+        second.next=prev.next
+        prev.next=second
+            
+        if first.next is not None:
+            prev=first
+            first=first.next
+            second=first.next
+        else:
+            second=None
+            
+            
+            
+    self.head=d.next
+        
+    return True
