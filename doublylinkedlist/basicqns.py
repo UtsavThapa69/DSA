@@ -8,8 +8,8 @@ class DoublyLinkedList:
 
     def __init__(self, value):
         new_node=Node(value)
-        self.next = None
-        self.prev = None
+        self.head = new_node
+        self.tail = new_node
         self.length = 1
 
     def append (self, value):
@@ -85,14 +85,14 @@ class DoublyLinkedList:
         temp = self.head
         last = self.tail
 
-        if (self.length // 2) < index:
+        if (self.length // 2) > index:
             for _ in range(index) :
                 temp = temp.next
 
             return temp
 
         else:
-            for _ in range(index):
+            for _ in range(self.length - 1 - index):
                 last = last.prev
 
             return last
@@ -149,4 +149,3 @@ class DoublyLinkedList:
         self.length -= 1
         return temp
 
-    
