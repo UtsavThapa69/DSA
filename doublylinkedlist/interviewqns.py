@@ -79,7 +79,66 @@ def partition_list(self, x):
     return True
             
         
-            
-            
-    
-    
+def swap_pairs(self):
+    if self.head is None or self.length == 1:
+        return True
+
+    d = Node(0)
+    first = self.head
+    second = first.next
+    temp = d
+    d.next = first
+    first.prev = d
+
+    while second:
+        if second.next :
+            second.next.prev = first
+
+        first.next = second.next
+        second.prev = temp
+        temp.next = second
+        first.prev = second
+        second.next = first
+        temp = first
+        first = first.next
+        if first is None:
+            break
+        second = first.next
+
+    self.head = d.next
+    d.next = None
+    self.head.prev = None
+    return True
+
+def reverse_between(self, i , j):
+    if i < 0 or j >= self.length:
+        return False
+
+    if i > j:
+        return False
+
+    d = Node(0)
+    temp = d
+    current = self.head
+    d.next = self.head
+    self.head.prev = d
+
+    for _ in range (i):
+        current = current.next
+        temp = temp.next
+
+    for _ in range(j - i):
+        to_move = current.next
+        current.next = to_move.next
+        if to_move.next is not None:
+            to_move.next.prev = current
+        temp.next.prev = to_move
+        to_move.next = temp.next
+        to_move.prev = temp
+        temp.next = to_move
+
+    self.head = d.next
+    d.next = None
+    self.head.prev = None
+    return True
+        
